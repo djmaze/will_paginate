@@ -167,7 +167,11 @@ module WillPaginate
           if block_given?
             return method_missing_without_paginate(method, *args) { |*a| yield(*a) }
           else
-            return method_missing_without_paginate(method, *args) 
+             if method == :all                                                                                                                               
+               return method_missing_without_paginate(method) 
+             else
+               return method_missing_without_paginate(method, *args) 
+             end
           end
         end
         
